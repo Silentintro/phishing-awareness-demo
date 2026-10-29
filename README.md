@@ -38,7 +38,7 @@ simulation and explains what gave it away.
 ## Live demo
 
 Hosted via GitHub Pages:
-`https://silentintro.github.io/phishing-awareness-demo/`
+https://silentintro.github.io/phishing-awareness-demo/
 
 ## Methodology / Ethics
 
