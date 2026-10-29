@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SecureAccess – Account Verification</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L4 5v6c0 5 3.4 8.7 8 9.9 4.6-1.2 8-4.9 8-9.9V5l-8-3z" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    <span>SecureAccess</span>
+  </div>
+
+  <div class="card" id="loginCard">
+    <div class="banner">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4M12 16.5h.01M10.3 3.9L2.5 17a1.8 1.8 0 0 0 1.56 2.7h15.9A1.8 1.8 0 0 0 21.5 17L13.7 3.9a1.8 1.8 0 0 0-3.1 0Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <div>Unusual sign-in activity was detected. Verify your account to keep access.</div>
+    </div>
+
+    <h1>Verify your account</h1>
+    <p class="sub">Confirm your details below to restore full access within 24 hours.</p>
+
+    <form id="loginForm">
+      <label for="email">Email address</label>
+      <input type="email" id="email" placeholder="you@example.com" required>
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="••••••••" required>
+      <button type="submit">Verify account</button>
+    </form>
+    <div class="foot">This page is part of a college cybersecurity awareness exercise.</div>
+  </div>
+
+  <div class="card reveal" id="revealCard">
+    <span class="tag">Simulation</span>
+    <h1>This was a phishing simulation</h1>
+    <p>Nothing you typed was saved or sent anywhere — the password field was cleared the instant you pressed submit. This page exists only for a college cybersecurity awareness project.</p>
+    <p style="margin-bottom:8px;"><strong>What gave it away:</strong></p>
+    <ul class="tips">
+      <li>Urgency — a 24-hour deadline pushing you to act fast</li>
+      <li>A generic warning with no real account details</li>
+      <li>A login page reached through an emailed link, not typed directly</li>
+      <li>A threat of losing access if you don't respond</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+(function(){
+  var form = document.getElementById('loginForm');
+  var loginCard = document.getElementById('loginCard');
+  var revealCard = document.getElementById('revealCard');
+  var pw = document.getElementById('password');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    pw.value = '';
+    loginCard.classList.add('hide');
+    revealCard.classList.add('show');
+    try{
+      var u = new URL(window.location.href);
+      u.hash = 'submitted';
+      history.replaceState(null, '', u.toString());
+    }catch(err){}
+  });
+})();
+</script>
+</body>
+</html>
